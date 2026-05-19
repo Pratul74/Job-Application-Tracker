@@ -1,0 +1,35 @@
+@Library("shared") _
+pipeline{
+    agent {
+        label 'Agent1'
+    }
+    stages{
+        stage("Code"){
+            steps{
+                echo "Clonning the code from github"
+                script{
+                    gitclone("https://github.com/Pratul74/Job-Application-Tracker.git", "main")
+                }
+            }
+            
+        }
+        stage("Build"){
+            steps{
+                echo "Building the docker image"
+            }
+        }
+        stage("Test"){
+            steps{
+                echo "Testing the app"
+            }
+        }
+        stage("Deploy") {
+            steps {
+                echo "Deploying the code"
+                script{
+                    dockercompose("jobapplicationenv", "secret_file")
+                }
+            }
+        }
+    }
+}
