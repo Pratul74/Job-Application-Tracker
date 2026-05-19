@@ -55,9 +55,10 @@ class UserLoginView(APIView):
                 email=email,
                 password=password
             )
-            refresh=RefreshToken.for_user(user)
 
             if user is not None:
+                refresh=RefreshToken.for_user(user)
+
                 return Response(
                     {
                         "message": "Login successful",
