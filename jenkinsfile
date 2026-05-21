@@ -1,7 +1,7 @@
-@Library("shared") _
+@Library("Shared-library1") _
 pipeline{
     agent {
-        label 'Agent1'
+        label 'Pratul'
     }
     stages{
         stage("Code"){
